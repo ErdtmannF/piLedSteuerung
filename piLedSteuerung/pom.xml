@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.2.RELEASE</version>
+	</parent>
+
+	<groupId>de.erdtmann.soft</groupId>
+	<artifactId>piLedSteuerung</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging>
+
+	<properties>
+		<java.version>1.8</java.version>
+
+		<!-- RASPBERRY PI PROPERTIES -->
+		<pi.host>partyraumpi</pi.host>
+		<pi.port>22</pi.port>
+		<pi.user>pi</pi.user>
+		<pi.password>pi</pi.password>
+		<pi.deployDirectory>/home/pi/programme/LichtSteuerung</pi.deployDirectory>
+
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>oss-snapshots-repo</id>
+			<name>Sonatype OSS Maven Repository</name>
+			<url>https://oss.sonatype.org/content/groups/public</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>de.erdtmann.soft</groupId>
+			<artifactId>lichtUtils</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.pi4j</groupId>
+			<artifactId>pi4j-core</artifactId>
+			<version>1.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.mbelling</groupId>
+			<artifactId>rpi-ws281x-java</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<executable>true</executable>
+				</configuration>
+			</plugin>
+			<!-- OPTIONALLY DEPLOY THE FINAL JAR TO THE RASPBERRY PI -->
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+
+					<!-- copy the compiled JAR file to the Raspberry Pi platform platform -->
+					<execution>
+						<id>transfer-compiled-pi4j-app-jar</id>
+						<phase>install</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+
+								<!-- copy the JAR file to the Raspberry Pi -->
+								<scp file="${basedir}\target\${project.build.finalName}.jar"
+									todir="${pi.user}:${pi.password}@${pi.host}:${pi.deployDirectory}"
+									port="${pi.port}" trust="true" verbose="true"
+									failonerror="true">
+								</scp>
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.ant</groupId>
+						<artifactId>ant-jsch</artifactId>
+						<version>1.9.6</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
