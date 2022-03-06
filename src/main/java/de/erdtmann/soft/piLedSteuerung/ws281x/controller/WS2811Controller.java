@@ -8,9 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import de.erdtmann.soft.lichtUtils.Colors;
-import de.erdtmann.soft.lichtUtils.LichtKonfig;
-import de.erdtmann.soft.lichtUtils.WsLedModus;
+import de.erdtmann.soft.utilsPackage.licht.Colors;
+import de.erdtmann.soft.utilsPackage.licht.LichtKonfig;
+import de.erdtmann.soft.utilsPackage.licht.WsLedModus;
 
 import com.github.mbelling.ws281x.*;
 
@@ -39,7 +39,6 @@ public class WS2811Controller {
 			// Startkonfiguration, kann zur Luafzeit veraendert werden
 			konfig = LichtKonfig.builder().withV1(100)
 											.withV2(100)
-											.withgruppen(1)
 											.withHell(200)
 											.withAktiv(false)
 											.withFarbe(Colors.WEISS)

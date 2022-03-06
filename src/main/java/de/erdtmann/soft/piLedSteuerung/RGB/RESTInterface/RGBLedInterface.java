@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ch.qos.logback.classic.Logger;
-import de.erdtmann.soft.lichtUtils.Colors;
+import de.erdtmann.soft.utilsPackage.licht.Colors;
 import de.erdtmann.soft.piLedSteuerung.RGB.controller.RGBLedController;
 import de.erdtmann.soft.piLedSteuerung.ws281x.controller.WS2811Controller;
 
