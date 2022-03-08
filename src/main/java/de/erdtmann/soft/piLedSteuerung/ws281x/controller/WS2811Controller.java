@@ -8,11 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import de.erdtmann.soft.utilsPackage.licht.Colors;
-import de.erdtmann.soft.utilsPackage.licht.LichtKonfig;
-import de.erdtmann.soft.utilsPackage.licht.WsLedModus;
-
 import com.github.mbelling.ws281x.*;
+
+import de.erdtmann.soft.utils.licht.Colors;
+import de.erdtmann.soft.utils.licht.LichtKonfig;
+import de.erdtmann.soft.utils.licht.WsLedModus;
 
 @Service
 public class WS2811Controller {

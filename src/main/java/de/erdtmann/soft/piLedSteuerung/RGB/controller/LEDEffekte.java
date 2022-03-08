@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
-import de.erdtmann.soft.utilsPackage.licht.Colors;
 import de.erdtmann.soft.piLedSteuerung.RGB.util.LedUtils;
+import de.erdtmann.soft.utils.licht.Colors;
 
 
 @Component

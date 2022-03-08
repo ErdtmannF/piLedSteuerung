@@ -3,6 +3,7 @@
 	<name>piLedSteuerung</name>
 	<comment></comment>
 	<projects>
+		<project>utilsPackage</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

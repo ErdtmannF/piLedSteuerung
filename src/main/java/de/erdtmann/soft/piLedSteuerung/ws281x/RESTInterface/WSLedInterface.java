@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import de.erdtmann.soft.utilsPackage.licht.WsLedModus;
 import de.erdtmann.soft.piLedSteuerung.ws281x.controller.WS2811Controller;
+import de.erdtmann.soft.utils.licht.WsLedModus;
 
 @RestController
 @RequestMapping("wsLed")
